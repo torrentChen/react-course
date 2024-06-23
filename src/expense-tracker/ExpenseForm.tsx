@@ -25,7 +25,7 @@ import React from "react";
 const formSchema = z.object({
     description: z.string().min(1, { message: "Description must be at least 1 character." }).default(""),
     amount: z.coerce.number().positive({ message: "Amount must be a positive number." }).default(0),
-    category: z.string().default(""),
+    category: z.string(),
 });
 
 interface Props {
@@ -40,10 +40,7 @@ export default function ExpenseForm({setExpenses, categories}: Props) {
 
     // 定义提交处理函数
     function onSubmit(values: z.infer<typeof formSchema>) {
-        setExpenses(expenses => ([...expenses, {...values, id: expenses.length}]))
-        form.resetField("description")
-        form.resetField("description")
-        form.resetField("description")
+        setExpenses(expenses => ([...expenses, {...values, id: expenses.length + 1}]))
     }
 
     return (
@@ -91,7 +88,7 @@ export default function ExpenseForm({setExpenses, categories}: Props) {
                                     </FormControl>
                                     <SelectContent>
                                         {categories.map(category =>
-                                            <SelectItem value={category}>{category}
+                                            <SelectItem key={category} value={category}>{category}
                                             </SelectItem>)
                                         }
                                     </SelectContent>
