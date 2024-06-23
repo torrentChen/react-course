@@ -20,7 +20,7 @@ const GameGrid = ({gameQuery}: {gameQuery: GameQuery}) => {
             dataLength={games?.pages.reduce((total, page) => total + page.length, 0) || 0}
         >
             <div className="grid grid-cols-1 gap-6 mt-10 sm:grid-cols-2 xl:grid-cols-4 justify-items-center">
-            {<p className="text-3xl text-red-600 col-span-4">{error?.message}</p>}
+            {error && <p className="text-3xl text-red-600 col-span-4">{error?.message}</p>}
             {
                 isLoading ?
                 Array.from({length: 20}, (_, i) => i + 1).map((_, index) => (
