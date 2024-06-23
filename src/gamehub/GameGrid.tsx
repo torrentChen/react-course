@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import {GameQuery} from "@/gamehub/GameHub.tsx";
 import InfiniteScroll from "react-infinite-scroll-component";
+import gameImg from "@/assets/game.jpeg"
 
 const GameGrid = ({gameQuery}: {gameQuery: GameQuery}) => {
     const {data: games, error, isLoading, fetchNextPage, hasNextPage} = useGames(gameQuery)
@@ -26,7 +27,7 @@ const GameGrid = ({gameQuery}: {gameQuery: GameQuery}) => {
                     <SkeletonCard key={index}/>
                 )) : games?.pages.map(page => page.map(game => (
                         <Card className="w-[350px]" key={game.id}>
-                            <img src="https://pic.rmb.bdstatic.com/bjh/240520/dump/fa3f402f07e867c4c1c3184f5cceb4e2.jpeg" alt=""/>
+                            <img src={gameImg} alt=""/>
                             <CardHeader>
                                 <CardTitle className="truncate text-3xl">{game.title}</CardTitle>
                                 <CardDescription className="truncate">{game.body}</CardDescription>
